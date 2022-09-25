@@ -45,8 +45,15 @@ class AddToCartButton extends React.Component {
     }
 
     render() {
+        let message = '';
+        if (this.state.active) {
+            message = 'Remove from cart'
+        } else {
+            message = 'Add to cart'
+        }
+
         return (
-            <a href="" title="add-to-cart-button" onClick={this.handleOnClick}>
+            <a href="" title={message} onClick={this.handleOnClick}>
                 {this.getIcon()}
             </a>
         )
@@ -95,8 +102,15 @@ class AddToFavoritesButton extends React.Component {
     }
 
     render() {
+        let message = '';
+        if (this.state.active) {
+            message = `Remove from favorites`
+        } else {
+            message = `Add to favorites`
+        }
+
         return (
-            <a href="" title="favorites-button" onClick = { this.handleOnClick}>
+            <a href="" title={message} onClick={this.handleOnClick}>
                 {this.getIcon()}
             </a>
         )
