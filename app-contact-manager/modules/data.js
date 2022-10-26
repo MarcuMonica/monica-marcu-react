@@ -5,6 +5,14 @@ export default [
     surname: 'Carolson',
     phone: '0740000000',
     email: 'carol@carol.ro',
+    pets: [
+      {
+        name: 'Rex',
+        species: 'Caine',
+        age: 32,
+        id: 1,
+      },
+    ],
   },
   {
     id: 2,

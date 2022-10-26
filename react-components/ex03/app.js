@@ -22,4 +22,77 @@ const person = {
   },
 };
 
+console.warn(`
+Folosind Object.values(), afiseaza o lista inversata cu
+numele complet inversat al prietenilor.
+`);
+const values1 = Object.values(person.friends);
+values1.reverse();
+values1.forEach(({ name, surname }) => {
+  console.log(`${surname} ${name}`);
+});
 
+console.warn(`
+Afiseaza propozitia: “Prietenii mei sunt Larry, Steven si Carol.”
+folosind Object.values()
+`);
+console.log(
+  Object.values(person.friends).reduce((carry, { name }, index, friends) => {
+    let punctuation = ', ';
+    punctuation = friends.length - 1 === index ? '.' : punctuation;
+    punctuation = friends.length - 2 === index ? ' si ' : punctuation;
+
+    carry = `${carry}${name}${punctuation}`;
+
+    return carry;
+  }, 'Prietenii mei sunt '),
+);
+
+console.warn(`
+Prin aceeasi metoda, afiseaza propozitia: “Diferenta de varsta intre
+Larry si Dragos este de xxx ani.” etc…
+`);
+
+const sentences = values1.map(({ name, age }) => {
+  const diff = Math.abs(person.age - age);
+
+  return `Diferenta de varsta dintre ${name} si ${person.name} este de ${diff} ani.`;
+});
+console.log(sentences.toString());
+
+console.warn(`
+Prin aceeasi metoda, afiseaza o lista cu numele
+complet al prietenilor.
+`);
+const friendsList = Object.values(person.friends);
+const completeNameList = friendsList.map(({ name, surname }) => {
+  return `${name} ${surname}`;
+});
+console.log(completeNameList);
+
+console.warn(`
+Afiseaza propozitia: “Prietenii mei sunt Larry
+Larryson, Steven Stevenson si Carol Carolson.”
+folosind Object.values()
+`);
+const sentence1 = friendsList.reduce(
+  (sentence1, { name, surname }, index, friends) => {
+    const punctuation = index === friends.length - 1 ? '.' : ', ';
+    sentence1 += `${name} ${surname}${punctuation}`;
+    return sentence1;
+  },
+  'Prietenii mei sunt: ',
+);
+console.log(sentence1);
+
+console.warn(`
+In mod similar, afiseaza propozitia  “Larry are xx ani. Steven are …”
+`);
+const friendsAge = friendsList
+  .reduce((friendsAge, { name, age }) => {
+    friendsAge += `${name} are ${age} ani. `;
+
+    return friendsAge;
+  }, '')
+  .trim();
+console.log(friendsAge);
